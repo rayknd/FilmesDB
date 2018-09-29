@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">FilmesDB</string>
+    <string name="botao_enviar">Buscar</string>
+    <string-array name="spinner_genero">
+        <item>""</item>
+        <item>Aventura</item>
+        <item>Ação</item>
+        <item>Animação</item>
+        <item>Comédia</item>
+        <item>Crime</item>
+        <item>Documentário</item>
+        <item>Drama</item>
+        <item>Família</item>
+        <item>Fantasia</item>
+        <item>História</item>
+        <item>Horror</item>
+        <item>Musical</item>
+        <item>Mistério</item>
+        <item>Romance</item>
+        <item>Ficção Científica</item>
+        <item>Filmes para TV</item>
+        <item>Suspense</item>
+        <item>Guerra</item>
+        <item>Western</item>
+    </string-array>
+</resources>
+
+
+
