@@ -5,41 +5,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 import desmob.ads.usjt.br.filmesdb.R;
-import desmob.ads.usjt.br.filmesdb.model.Genero;
-import desmob.ads.usjt.br.filmesdb.model.GeneroDAO;
+import desmob.ads.usjt.br.filmesdb.model.Filme;
+import desmob.ads.usjt.br.filmesdb.model.FilmeDAO;
 
-public class ListaGeneroActivity extends Activity {
+public class ListaFilmeActivity extends Activity {
 
     public static final String GENERO1 = "desmob.ads.usjt.br.filmesdb.controllernomedogenero";
-    private ArrayList<Genero> generos;
+    private ArrayList<Filme> filmes;
     Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = this;
-        setContentView(R.layout.activity_lista_genero);
+        setContentView(R.layout.activity_lista_filme);
 
-        Genero genero = new Genero();
+        Filme filme = new Filme();
 
         Intent intent = getIntent();
         String chave = intent.getStringExtra(MainActivity.GENERO);
 
-        generos = buscaGenero(chave);
-        System.out.println(generos);
+        filmes = buscaGenero(chave);
+        System.out.println(filmes);
         ListView listView = findViewById(R.id.lista_genero);
-        GeneroAdapter adapter = new GeneroAdapter(generos, this);
+        FilmeAdapter adapter = new FilmeAdapter(filmes, this);
 
         listView.setAdapter(adapter);
 
@@ -47,9 +41,9 @@ public class ListaGeneroActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Genero genero = generos.get(i);
-                Intent intent1 = new Intent(activity, DetalheGenero.class);
-                intent1.putExtra(GENERO1, genero);
+                Filme filme = filmes.get(i);
+                Intent intent1 = new Intent(activity, DetalheFilme.class);
+                intent1.putExtra(GENERO1, filme);
                 startActivity(intent1);
             }
 
@@ -57,15 +51,15 @@ public class ListaGeneroActivity extends Activity {
 
     }
 
-    private ArrayList<Genero> buscaGenero(String chave){
-        ArrayList<Genero> resultado;
+    private ArrayList<Filme> buscaGenero(String chave){
+        ArrayList<Filme> resultado;
         System.out.println(chave);
         if(chave !=null && chave.length() > 0){
             resultado = new ArrayList<>();
-            ArrayList<Genero> lista = listaGenero();
-            for(Genero genero:lista){
-                if(genero.getNome().toUpperCase().contains(chave.toUpperCase())){
-                    resultado.add(genero);
+            ArrayList<Filme> lista = listaGenero();
+            for(Filme filme :lista){
+                if(filme.getNome().toUpperCase().contains(chave.toUpperCase())){
+                    resultado.add(filme);
                 }
             }
             return resultado;
@@ -75,12 +69,12 @@ public class ListaGeneroActivity extends Activity {
     }
 
 
-    private ArrayList<Genero> listaGenero(){
-        ArrayList<Genero>lista = new ArrayList<>();
-        Genero[] generos1 = GeneroDAO.getGenero();
-        for(Genero genero:generos1){
-            lista.add(genero);
-            System.out.println(genero);
+    private ArrayList<Filme> listaGenero(){
+        ArrayList<Filme>lista = new ArrayList<>();
+        Filme[] generos1 = FilmeDAO.getGenero();
+        for(Filme filme :generos1){
+            lista.add(filme);
+            System.out.println(filme);
         }
         return lista;
     }

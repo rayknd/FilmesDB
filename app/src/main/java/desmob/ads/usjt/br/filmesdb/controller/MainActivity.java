@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
@@ -41,7 +40,7 @@ public class MainActivity extends Activity  {
     public final static String GENERO = "desmob.ads.usjt.br.filmesdb.controller.genero";
 
     public void buscarGenero(View view){
-        Intent intent = new Intent(this, ListaGeneroActivity.class);
+        Intent intent = new Intent(this, ListaFilmeActivity.class);
 
         intent.putExtra(GENERO, genero);
         startActivity(intent);

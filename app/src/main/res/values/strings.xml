@@ -23,6 +23,12 @@
         <item>Guerra</item>
         <item>Western</item>
     </string-array>
+
+    <string name="lbl_diretor">Direção:</string>
+    <string name="lbl_data">Data de Lançamento:</string>
+    <string name="lbl_popularidade">Popularidade:</string>
+    <string name="lbl_descricao">Descrição:</string>
+
 </resources>
 
 

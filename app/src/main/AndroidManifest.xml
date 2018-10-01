@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="desmob.ads.usjt.br.filmesdb">
 
     <application
@@ -16,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.ListaGeneroActivity" />
-        <activity android:name=".controller.DetalheGenero"></activity>
+        <activity android:name=".controller.ListaFilmeActivity" />
+        <activity android:name=".controller.DetalheFilme"></activity>
     </application>
 
 </manifest>

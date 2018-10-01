@@ -9,10 +9,13 @@ public class ViewHolder {
     private ImageView imagem;
     private TextView linha1, linha2;
 
-    public ViewHolder(TextView linha1, TextView linha2){
+    public ViewHolder(ImageView imagem, TextView linha1, TextView linha2){
+        this.imagem = imagem;
         this.linha1 = linha1;
         this.linha2 = linha2;
     }
+
+    public ImageView getImagem(){return imagem;}
 
     public void setLinha1(TextView linha1){
         this.linha1 = linha1;
