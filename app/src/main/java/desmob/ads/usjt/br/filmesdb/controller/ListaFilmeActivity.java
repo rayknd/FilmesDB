@@ -15,7 +15,7 @@ import desmob.ads.usjt.br.filmesdb.model.FilmeDAO;
 
 public class ListaFilmeActivity extends Activity {
 
-    public static final String GENERO1 = "desmob.ads.usjt.br.filmesdb.controllernomedogenero";
+    public static final String FILME = "desmob.ads.usjt.br.filmesdb.controller.filme";
     private ArrayList<Filme> filmes;
     Activity activity;
 
@@ -25,16 +25,16 @@ public class ListaFilmeActivity extends Activity {
         activity = this;
         setContentView(R.layout.activity_lista_filme);
 
-        Filme filme = new Filme();
 
         Intent intent = getIntent();
         String chave = intent.getStringExtra(MainActivity.GENERO);
 
-        filmes = buscaGenero(chave);
-        System.out.println(filmes);
-        ListView listView = findViewById(R.id.lista_genero);
-        FilmeAdapter adapter = new FilmeAdapter(filmes, this);
+        //filmes = buscaGenero(chave);
 
+        filmes = (ArrayList<Filme>) intent.getSerializableExtra(MainActivity.FILMES);
+
+        ListView listView = findViewById(R.id.lista_filmes);
+        FilmeAdapter adapter = new FilmeAdapter(filmes, this);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -42,40 +42,13 @@ public class ListaFilmeActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Filme filme = filmes.get(i);
-                Intent intent1 = new Intent(activity, DetalheFilme.class);
-                intent1.putExtra(GENERO1, filme);
-                startActivity(intent1);
+                Intent intent = new Intent(activity, DetalheFilme.class);
+                intent.putExtra(FILME, filme);
+                startActivity(intent);
             }
 
         });
 
     }
 
-    private ArrayList<Filme> buscaGenero(String chave){
-        ArrayList<Filme> resultado;
-        System.out.println(chave);
-        if(chave !=null && chave.length() > 0){
-            resultado = new ArrayList<>();
-            ArrayList<Filme> lista = listaGenero();
-            for(Filme filme :lista){
-                if(filme.getNome().toUpperCase().contains(chave.toUpperCase())){
-                    resultado.add(filme);
-                }
-            }
-            return resultado;
-        }else{
-            return listaGenero();
-        }
-    }
-
-
-    private ArrayList<Filme> listaGenero(){
-        ArrayList<Filme>lista = new ArrayList<>();
-        Filme[] generos1 = FilmeDAO.getGenero();
-        for(Filme filme :generos1){
-            lista.add(filme);
-            System.out.println(filme);
-        }
-        return lista;
-    }
 }

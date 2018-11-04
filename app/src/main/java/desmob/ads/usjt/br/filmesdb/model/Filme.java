@@ -5,14 +5,15 @@ import java.io.Serializable;
 public class Filme implements Serializable{
 
     private String nome, genero, descricao, imagem, nomeDiretor, data;
-    private int id, popularidade;
+    private int id;
+    private double popularidade;
 
     public Filme(){
 
     }
 
     public Filme(int id, String nome, String genero,String descricao, String nomeDiretor, String data,
-    int popularidade){
+    double popularidade, String imagem){
         this.id = id;
         this.nome = nome;
         this.genero = genero;
@@ -20,6 +21,7 @@ public class Filme implements Serializable{
         this.nomeDiretor = nomeDiretor;
         this.data = data;
         this.popularidade = popularidade;
+        this.imagem = imagem;
     }
 
     public String getNome() {
@@ -64,11 +66,11 @@ public class Filme implements Serializable{
 
     public void setData(String data) { this.data = data; }
 
-    public int getPopularidade() {
+    public double getPopularidade() {
         return popularidade;
     }
 
-    public void setPopularidade(int popularidade) {
+    public void setPopularidade(double popularidade) {
         this.popularidade = popularidade;
     }
 
@@ -80,6 +82,7 @@ public class Filme implements Serializable{
                 ", genero='" + genero + '\'' +
                 ", descrição='" + descricao + '\'' +
                 ", data='" + data + '\'' +
+                ", data='" + imagem + '\'' +
                 ", popularidade='" + popularidade + '\'' +
                 ", id=" + id + '}';
     }
