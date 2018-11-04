@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import desmob.ads.usjt.br.filmesdb.R;
 import desmob.ads.usjt.br.filmesdb.model.Filme;

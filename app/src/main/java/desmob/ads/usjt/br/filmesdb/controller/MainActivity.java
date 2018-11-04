@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import desmob.ads.usjt.br.filmesdb.R;
 import desmob.ads.usjt.br.filmesdb.model.Filme;
 import desmob.ads.usjt.br.filmesdb.model.FilmeDAO;
+import desmob.ads.usjt.br.filmesdb.model.FilmeDb;
 import desmob.ads.usjt.br.filmesdb.model.Genero;
 import desmob.ads.usjt.br.filmesdb.model.GeneroDAO;
 import desmob.ads.usjt.br.filmesdb.model.Util;
@@ -79,6 +80,8 @@ public class MainActivity extends Activity  {
         } else {
             Toast toast = Toast.makeText(this, "Conexão com a internet não encontrada. Utilizando cache.", Toast.LENGTH_LONG);
             toast.show();
+
+            new CarregaFilmes().execute("filmes");
         }
 
     }
@@ -89,7 +92,8 @@ public class MainActivity extends Activity  {
         protected ArrayList<Filme> doInBackground(String... strings) {
             try {
                 ArrayList<Filme> filmes = FilmeDAO.getFilmes(strings[0]);
-
+                FilmeDb db = new FilmeDb(context);
+                db.insereFilmes(filmes);
                 return filmes;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -99,6 +103,22 @@ public class MainActivity extends Activity  {
 
         protected void onPostExecute(ArrayList<Filme> filmes) {
             intent.putExtra(GENERO, (CharSequence) spinner);
+            intent.putExtra(FILMES, filmes);
+            startActivity(intent);
+        }
+    }
+
+
+    private class CarregaFilmes extends AsyncTask<String, Void, ArrayList<Filme>> {
+
+        @Override
+        protected ArrayList<Filme> doInBackground(String... strings) {
+            FilmeDb db = new FilmeDb(context);
+            ArrayList<Filme> filmes = db.listarFilmes();
+            return filmes;
+        }
+
+        protected void onPostExecute(ArrayList<Filme> filmes){
             intent.putExtra(FILMES, filmes);
             startActivity(intent);
         }
